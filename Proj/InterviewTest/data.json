@@ -1,0 +1,60 @@
+{
+  "screens": [
+    {
+      "id": "start-screen",
+      "components": [
+        {
+          "componentType": "Form",
+          "gap": 4,
+          "onSubmit": "PAY_WITH_DUCKS",
+          "components": [
+            {
+              "componentType": "Container",
+              "gap": 2,
+              "components": [
+                {
+                  "componentType": "Text",
+                  "text": "Pay with Ducks"
+                },
+                {
+                  "componentType": "Text",
+                  "text": "1. Go to your Ducks app to get your Duck code."
+                },
+                {
+                  "componentType": "Text",
+                  "text": "2. Paste your Duck code here."
+                },
+                {
+                  "componentType": "Input",
+                  "hint": "1234",
+                  "label": "Duck code",
+                  "name": "duckCode"
+                }
+              ]
+            },
+            {
+              "componentType": "Button",
+              "type": "submit",
+              "text": "Pay"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "PAY_WITH_DUCKS",
+      "actions": [
+        {
+          "type": "log",
+          "args": [
+                        {
+                            "duckCode": "{{duckCode}}"
+                        }
+                    ]
+        }
+      ]
+    }
+  ]
+}
