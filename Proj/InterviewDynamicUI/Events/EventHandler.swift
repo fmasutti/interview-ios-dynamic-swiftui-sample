@@ -14,9 +14,9 @@ protocol EventHandlerProtocol {
 }
 
 class EventHandler: EventHandlerProtocol {
-    private var bindings: [String: Binding<String>]
+    private var bindings: [String: Binding<Any>]
 
-    init(bindings: [String: Binding<String>]) {
+    init(bindings: [String: Binding<Any>]) {
         self.bindings = bindings
     }
 
@@ -25,8 +25,14 @@ class EventHandler: EventHandlerProtocol {
             switch action.type {
             case .log:
                 for arg in action.args {
-                    if let value = bindings[arg.key] {
-                        print("\(arg.key): \(value.wrappedValue)")
+                    if let binding = bindings[arg.key] {
+                        if let value = binding.wrappedValue as? String {
+                            print("\(arg.key): \(value)")
+                        } else if let value = binding.wrappedValue as? Float {
+                            print("\(arg.key): \(value)")
+                        } else {
+                            print("\(arg.key): \(binding.wrappedValue)")
+                        }
                     }
                 }
             }

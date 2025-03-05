@@ -11,9 +11,8 @@ import SwiftUI
 
 protocol DynamicViewProtocol: ObservableObject {
     var components: [ComponentModel] { get set }
-    var bindings: [String: Binding<String>] { get set }
+    var bindings: [String: Binding<Any>] { get set }
     var events: [String: EventModel] { get set }
     var cancellables: Set<AnyCancellable> { get set }
-    
     func fetchData() -> AnyPublisher<UIModel, Error>
 }

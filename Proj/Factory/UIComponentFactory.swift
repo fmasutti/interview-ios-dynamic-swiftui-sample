@@ -11,7 +11,7 @@ struct UIFactory {
 
     @ViewBuilder
     static func createView(from component: ComponentModel,
-                           bindings: [String: Binding<String>],
+                           bindings: [String: Binding<Any>],
                            events: [String: EventModel],
                            parentFormEvent: String? = nil) -> some View {
         switch component.componentType {
@@ -41,26 +41,27 @@ struct UIFactory {
                              bindings: bindings,
                              events: events,
                              parentFormEvent: parentFormEvent)
+        case .slider(let sliderComponent):
+            createSliderView(from: sliderComponent , bindings: bindings)
         }
     }
 
     @ViewBuilder
     static func createFormView(from formComponent: FormComponentModel,
-                               bindings: [String: Binding<String>],
+                               bindings: [String: Binding<Any>],
                                events: [String: EventModel],
                                parentFormEvent: String?) -> some View {
         Form {
-            VStack(spacing: CGFloat(formComponent.gap ?? 0)) {
-                ForEach(formComponent.components, id: \.id) { subComponent in
-                    AnyView(createView(from: subComponent, bindings: bindings, events: events, parentFormEvent: parentFormEvent))
-                }
+            ForEach(formComponent.components, id: \.id) { subComponent in
+                AnyView(createView(from: subComponent, bindings: bindings, events: events, parentFormEvent: parentFormEvent))
+                    .padding(.vertical, CGFloat(formComponent.gap ?? 0))
             }
         }.submitLabel(.done)
     }
 
     @ViewBuilder
     static func createContainerView(from containerComponent: ContainerComponentModel,
-                                    bindings: [String: Binding<String>],
+                                    bindings: [String: Binding<Any>],
                                     events: [String: EventModel],
                                     parentFormEvent: String?) -> some View {
         VStack(spacing: CGFloat(containerComponent.gap ?? 0)) {
@@ -74,31 +75,57 @@ struct UIFactory {
     static func createTextView(from textComponent: TextComponentModel) -> some View {
         Text(textComponent.text)
     }
-
+    
     @ViewBuilder
-    static func createInputView(from inputComponent: InputComponentModel,
-                                bindings: [String: Binding<String>]) -> some View {
+    static func createSliderView(from sliderComponent: SliderComponentModel,
+                                 bindings: [String: Binding<Any>]) -> some View {
         VStack(alignment: .leading) {
-            Text(inputComponent.label)
+            Text(sliderComponent.label)
                 .font(.headline)
-
-            TextField(inputComponent.hint, text: bindings[inputComponent.name] ?? .constant(""))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.top, 4)
+            Slider(value: Binding(
+                get: {
+                    bindings[sliderComponent.name]?.wrappedValue as? Float ?? sliderComponent.currentValue
+                },
+                set: { newValue in
+                    bindings[sliderComponent.name]?.wrappedValue = newValue
+                }
+            ), in: sliderComponent.minValue...sliderComponent.maxValue)
+            .padding(.top, 4)
         }
         .padding()
     }
 
     @ViewBuilder
+    static func createInputView(from inputComponent: InputComponentModel,
+                                bindings: [String: Binding<Any>]) -> some View {
+        VStack(alignment: .leading) {
+                    Text(inputComponent.label)
+                        .font(.headline)
+
+                    TextField(inputComponent.hint, text: Binding(
+                        get: {
+                            bindings[inputComponent.name]?.wrappedValue as? String ?? ""
+                        },
+                        set: { newValue in
+                            bindings[inputComponent.name]?.wrappedValue = newValue
+                        }
+                    ))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.top, 4)
+                }
+                .padding()
+    }
+
+    @ViewBuilder
     static func createButtonView(from buttonComponent: ButtonComponentModel,
-                                 bindings: [String: Binding<String>],
+                                 bindings: [String: Binding<Any>],
                                  events: [String: EventModel],
                                  parentFormEvent: String?) -> some View {
         Button(action: {
             // Check if the button has its own event or inherits from the parent form
             var eventType = buttonComponent.type
             // Inherit the parent form event if it's a submit button
-            if let parentFormEvent = parentFormEvent, buttonComponent.type.lowercased() == "submit"{
+            if let parentFormEvent = parentFormEvent, buttonComponent.type.lowercased() == "submit" {
                 eventType = parentFormEvent
             }
             

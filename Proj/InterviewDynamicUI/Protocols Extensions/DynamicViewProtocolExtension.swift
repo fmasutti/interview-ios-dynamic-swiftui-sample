@@ -31,18 +31,26 @@ extension DynamicViewProtocol {
     }
     
     // Initialize bindings for the components any "named" inside the component is handled as a binding.
-    private func initializeBindings(for components: [ComponentModel]) -> [String: Binding<String>] {
-        var bindings: [String: Binding<String>] = [:]
+    private func initializeBindings(for components: [ComponentModel]) -> [String: Binding<Any>] {
+        var bindings: [String: Binding<Any>] = [:]
 
         for component in components {
             switch component.componentType {
             case .input(let inputModel):
                 var value = ""
-                let binding = Binding<String>(
+                let binding = Binding<Any>(
                     get: { value },
-                    set: { newValue in value = newValue }
+                    set: { newValue in value = newValue as? String ?? "" }
                 )
                 bindings[inputModel.name] = binding
+
+            case .slider(let sliderModel):
+                var value = sliderModel.currentValue
+                let binding = Binding<Any>(
+                    get: { value },
+                    set: { newValue in value = newValue as? Float ?? sliderModel.currentValue }
+                )
+                bindings[sliderModel.name] = binding
 
             case .form(let formModel):
                 let nestedBindings = initializeBindings(for: formModel.components)

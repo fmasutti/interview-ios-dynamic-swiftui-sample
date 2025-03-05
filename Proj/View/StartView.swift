@@ -50,6 +50,14 @@ private class StartViewModelMocked: StartViewModel {
                       "gap": 2,
                       "components": [
                         {
+                            "componentType": "Slider",
+                            "currentValue": 0.0,
+                            "minValue": 0.0,
+                            "maxValue": 100.0,
+                            "label": "Show case slider",
+                            "name": "sliderBindingKey"
+                        },
+                        {
                           "componentType": "Text",
                           "text": "Pay with Ducks"
                         },
@@ -66,30 +74,6 @@ private class StartViewModelMocked: StartViewModel {
                           "hint": "1234",
                           "label": "Duck code",
                           "name": "duckCode"
-                        }
-                      ]
-                    },
-                    {
-                      "componentType": "Container",
-                      "gap": 50,
-                      "components": [
-                        {
-                          "componentType": "Text",
-                          "text": "Pay with Dogs"
-                        },
-                        {
-                          "componentType": "Text",
-                          "text": "1. Open your Dogs app to get your Dog code."
-                        },
-                        {
-                          "componentType": "Text",
-                          "text": "2. Enter your Dog code below."
-                        },
-                        {
-                          "componentType": "Input",
-                          "hint": "5678",
-                          "label": "Dog code",
-                          "name": "dogCode"
                         }
                       ]
                     },
@@ -114,7 +98,7 @@ private class StartViewModelMocked: StartViewModel {
                       "duckCode": "{{duckCode}}"
                     },
                     {
-                      "dogCode": "{{dogCode}}"
+                      "slider!": "{{sliderBindingKey}}"
                     }
                   ]
                 }

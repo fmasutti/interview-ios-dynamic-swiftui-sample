@@ -43,6 +43,9 @@ struct ComponentModel: Codable {
         case "Button":
             let buttonComponent = try ButtonComponentModel(from: decoder)
             self.componentType = .button(buttonComponent)
+        case "Slider":
+                    let sliderComponent = try SliderComponentModel(from: decoder)
+                    self.componentType = .slider(sliderComponent)
         default:
             throw DecodingError.dataCorruptedError(forKey: .componentType, in: container, debugDescription: "Unknown component type: \(componentTypeString)")
         }
@@ -65,6 +68,8 @@ struct ComponentModel: Codable {
             componentTypeString = "Input"
         case .button:
             componentTypeString = "Button"
+        case .slider:
+            componentTypeString = "Slider"
         }
         
         try container.encode(componentTypeString, forKey: .componentType)
@@ -77,6 +82,7 @@ enum ComponentType: Codable {
     case text(TextComponentModel)
     case input(InputComponentModel)
     case button(ButtonComponentModel)
+    case slider(SliderComponentModel)
 
     enum CodingKeys: String, CodingKey {
         case form = "Form"
@@ -84,6 +90,7 @@ enum ComponentType: Codable {
         case text = "Text"
         case input = "Input"
         case button = "Button"
+        case slider = "Slider"
     }
 
     init(from decoder: Decoder) throws {
@@ -98,6 +105,8 @@ enum ComponentType: Codable {
             self = .input(input)
         } else if let button = try? container.decode(ButtonComponentModel.self, forKey: .button) {
             self = .button(button)
+        } else if let slider = try? container.decode(SliderComponentModel.self, forKey: .slider) {
+            self = .slider(slider)
         } else {
             throw DecodingError.dataCorruptedError(forKey: .form, in: container, debugDescription: "Invalid component type")
         }
@@ -116,6 +125,8 @@ enum ComponentType: Codable {
             try container.encode(input, forKey: .input)
         case .button(let button):
             try container.encode(button, forKey: .button)
+        case .slider(let slider):
+            try container.encode(slider, forKey: .slider)
         }
     }
 }

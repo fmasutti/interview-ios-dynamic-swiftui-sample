@@ -32,6 +32,7 @@
 		5B226A492D77A397001634E0 /* another-screen.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B226A482D77A397001634E0 /* another-screen.json */; };
 		5B226A4C2D78A0BD001634E0 /* DynamicViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B226A4B2D78A0BD001634E0 /* DynamicViewProtocol.swift */; };
 		5BB66E692D78B0A500E464F4 /* DuckCoinAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB66E672D78B0A500E464F4 /* DuckCoinAPIService.swift */; };
+		5BB66E6F2D78C13400E464F4 /* SliderComponentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB66E6E2D78C13400E464F4 /* SliderComponentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		5B226A482D77A397001634E0 /* another-screen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "another-screen.json"; sourceTree = "<group>"; };
 		5B226A4B2D78A0BD001634E0 /* DynamicViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicViewProtocol.swift; sourceTree = "<group>"; };
 		5BB66E672D78B0A500E464F4 /* DuckCoinAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuckCoinAPIService.swift; sourceTree = "<group>"; };
+		5BB66E6E2D78C13400E464F4 /* SliderComponentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderComponentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				5B226A402D7798D5001634E0 /* ScreenModel.swift */,
 				5B226A322D779450001634E0 /* TextComponentModel.swift */,
 				5B226A3E2D7798BE001634E0 /* UIModel.swift */,
+				5BB66E6E2D78C13400E464F4 /* SliderComponentModel.swift */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -394,6 +397,7 @@
 				5B226A372D779481001634E0 /* ButtonComponentModel.swift in Sources */,
 				5B1E8F952D765E400087515E /* EventHandler.swift in Sources */,
 				5B226A392D7794A2001634E0 /* EventModel.swift in Sources */,
+				5BB66E6F2D78C13400E464F4 /* SliderComponentModel.swift in Sources */,
 				5B1E8F782D763E6C0087515E /* ComponentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
