@@ -1,6 +1,6 @@
 //
 //  DuckCoinAPIService.swift
-//  PrimerTest
+//  InterviewDynamicUI
 //
 //  Created by Frantiesco Masutti on 20/02/2025.
 //

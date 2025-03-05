@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  PrimerTest
+//  InterviewDynamicUI
 //
 //  Created by Frantiesco Masutti on 20/02/2025.
 //
@@ -9,7 +9,9 @@ import SwiftUI
 import SwiftData
 import Combine
 
-// Assuming that all classes would have the same layout structure, it would be possible to create a base class / protocol / ViewModifier that could be used to create the core of view.
+// Just using a "StartView" to load and try the DyanamicUI flow
+// but in theory we could have some other "base" class /protocol or even a modifier to load the dynamic content.
+
 struct StartView: View {
     @StateObject private var viewModel = StartViewModel()
     
@@ -31,6 +33,9 @@ struct StartView: View {
     }
 }
 
+
+// Some mocked clas with a json bellow for the "fetchData".
+// Created a "Slider" just to show case the Binding for Int/String. working as it should.
 private class StartViewModelMocked: StartViewModel {
     override func fetchData() -> AnyPublisher<UIModel, any Error> {
         let jsonString =

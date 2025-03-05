@@ -85,7 +85,20 @@ The schema consists of two blocks:
 - `screens`: Contains all of the components that should be used to render the screen, and also potential events they may trigger.
 - `events`: Contains a list of events that specify which actions to execute when they trigger.
 
-## My Approach
+## Branches
+
+- **InterviewResult**: This branch contains the code I wrote during the interview process. The test took 1 hour.
+  - **IMPORTANT**: Look for the `// FIXME: (JUST SWAP THE "componentType" TO id)` comments. There are 2 incidences in the project where this makes a significant difference in the final result. I didn't catch these during the test as I was really nervous.
+- **Main**: The main branch includes has some improvements made after completing the solution with the company spend about maybe ~20hours.
+
+### Over the 20 hours I did the following:
+
+- Parsed the JSON data into Specific Swift models.
+- Updated the in View UI render function to a custom UIFactory Render that handle UI components based on the JSON schema.
+- Added a Custom `DynamicViewProtocol` and `DynamicViewProtocolExtension` to load the JSON data from the local file and store the binded data.
+- Added a Custom `SliderComponentModel` to show the use case of using String and Int Bindings.
+
+## My Approach & Implementation For the Challenge
 
 In this section, I will describe my approach to solving the challenge. This includes my thought process, design decisions, and code implementation details.
 
@@ -110,32 +123,29 @@ In this section, I will describe my approach to solving the challenge. This incl
 ### API Integration
 
 - Integrated with the local `data.json` file to mimic an external API.
-- Created a `DuckCoinAPIService` class that pretends to access some external API using `URLSession` OR `Alamofire` but at end it just access the local `data.json`.
+- Created a `DuckCoinAPIService` class that pretends to access some external API using in theory would be there any code related with `URLSession` OR `Alamofire` but at this sample  it just access the local `data.json`.
 - Parsed the JSON data using `Codable` structures All those model was created by AI.
 - Displayed the fetched data in the SwiftUI views.
 
-### State Management
+### State / Binding
 
 - Used `@State` properties to manage local state within views.
 - Implemented an `ObservableObject` class to manage shared state across views.
 - Bound the state to the UI using property wrappers like `@Published`.
-
-## Branches
-
-- **InterviewResult**: This branch contains the code I wrote during the interview process. The test took 1 hour.
-  - **IMPORTANT**: Look for the `// FIXME: (JUST SWAP THE "componentType" TO id)` comments. There are 2 incidences in the project where this makes a significant difference in the final result. I didn't catch these during the test as I was really nervous.
-- **Main**: This branch includes minor improvements made after completing the solution with the company.
+- The `DynamicViewProtocol` is the Protocol that has the `components`, `binding` and `events` that should be read from json and used in the ViewModel
+- The `DynamicViewProtocolExtension` is an extension added responsable to read / Store the components/Binding/Events from the dynamicUI.
 
 ### AI Assistance
 
 - During this test, I was able to use the AI to speed up the process. I used Copilot over the installed version on my Xcode to assist with coding tasks.
 
-## Conclusion
+### Next Steps
 
-In this challenge, I demonstrated my skills in SwiftUI, API integration, state management, and error handling. The resulting application is dynamic, responsive, and handles external data effectively.
+- Implemente a base class, protocol, ViewModifier to load/populate content on the view instead of just use the code that is in the `StartView`. this are could be improved for sure!
+- Work on unit Tests.
+- Work on UI Tests.
 
-## Repository Link
+- ## Conclusion
 
-You can find my code implementation and additional details in this repository: [iOS Dynamic SwiftUI Sample](https://github.com/fmasutti/interview-ios-dynamic-swiftui-sample)
-
+In this challenge, I demonstrated my skills in SwiftUI, API integration, state management, and error handling. The resulting application is dynamic, responsive.
 Feel free to explore the code and reach out if you have any questions or feedback!
