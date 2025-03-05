@@ -1,0 +1,93 @@
+{
+  "screens": [
+    {
+      "id": "start-screen",
+      "components": [
+        {
+          "componentType": "Form",
+          "gap": 4,
+          "onSubmit": "CreateAccount",
+          "components": [
+            {
+              "componentType": "Container",
+              "gap": 4,
+              "components": [
+                {
+                  "componentType": "Text",
+                  "text": "Name"
+                },
+                {
+                  "componentType": "Input",
+                  "hint": "Enter your name",
+                  "label": "Name",
+                  "name": "name"
+                }
+              ]
+            },
+            {
+              "componentType": "Container",
+              "gap": 4,
+              "components": [
+                {
+                  "componentType": "Text",
+                  "text": "Email"
+                },
+                {
+                  "componentType": "Input",
+                  "hint": "Enter your email",
+                  "label": "Email",
+                  "name": "email"
+                }
+              ]
+            },
+            {
+              "componentType": "Container",
+              "gap": 4,
+              "components": [
+                {
+                  "componentType": "Text",
+                  "text": "Password"
+                },
+                {
+                  "componentType": "Input",
+                  "hint": "Enter your password",
+                  "label": "Password",
+                  "name": "password"
+                }
+              ]
+            },
+            {
+              "componentType": "Button",
+              "type": "submit",
+              "text": "Register"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "CreateAccount",
+      "actions": [
+        {
+          "type": "log",
+          "args": [
+            {
+              "key": "name",
+              "value": "value"
+            },
+            {
+              "key": "email",
+              "value": "value"
+            },
+            {
+              "key": "password",
+              "value": "value"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
