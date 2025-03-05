@@ -145,7 +145,7 @@ In this section, I will describe my approach to solving the challenge. This incl
 - Work on unit Tests.
 - Work on UI Tests.
 
-- ## Conclusion
+## Conclusion
 
 In this challenge, I demonstrated my skills in SwiftUI, API integration, state management, and error handling. The resulting application is dynamic, responsive.
 Feel free to explore the code and reach out if you have any questions or feedback!
