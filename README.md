@@ -85,6 +85,10 @@ The schema consists of two blocks:
 - `screens`: Contains all of the components that should be used to render the screen, and also potential events they may trigger.
 - `events`: Contains a list of events that specify which actions to execute when they trigger.
 
+## Screenshot
+
+![Screenshot](ss/ss1.png)
+
 ## Branches
 
 - **InterviewResult**: This branch contains the code I wrote during the interview process. The test took 1 hour.
