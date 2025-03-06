@@ -93,7 +93,7 @@ The schema consists of two blocks:
 
 - **InterviewResult**: This branch contains the code I wrote during the interview process. The test took 1 hour.
   - **IMPORTANT**: Look for the `// FIXME: (JUST SWAP THE "componentType" TO id)` comments. There are 2 incidences in the project where this makes a significant difference in the final result. I didn't catch these during the test as I was really nervous.
-- **Main**: The main branch includes has some improvements made after completing the solution with the company spend about maybe ~20hours.
+- **master**: The main branch includes has some improvements made after completing the solution with the company spend about maybe ~20hours.
 
 ### Over the 20 hours I did the following:
 
